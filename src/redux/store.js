@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 // import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import contactsReducer from './contactsSlice';
+import filterSlice from './filterSlice';
 import {
   persistStore,
   persistReducer,
@@ -16,6 +17,7 @@ import {
 
 const rootReducer = combineReducers({
   contacts: contactsReducer,
+  filter: filterSlice,
 });
 
 const persistConfig = {

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import shortid from 'shortid';
 import Filter from './Filter/Filter';
@@ -9,8 +8,6 @@ import { add } from '../redux/contactsSlice';
 
 export default function App() {
   const contacts = useSelector(state => state.contacts);
-
-  const [filter, setFilter] = useState('');
 
   const dispatch = useDispatch();
   const addContact = event => {
@@ -28,24 +25,13 @@ export default function App() {
     }
   };
 
-  const changeFilter = filter => {
-    setFilter(filter);
-  };
-
-  const getVisibleContacts = () => {
-    return contacts.filter(contacts =>
-      contacts.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
-
-  const visibleContacts = getVisibleContacts();
   return (
     <div className={css.conteiner}>
       <h1>Phonebook</h1>
       <ContactForm addContact={addContact} />
       <h2>Contacts</h2>
-      <Filter value={filter} onChangeFilter={changeFilter} />
-      <ContactList contacts={visibleContacts} />
+      <Filter />
+      <ContactList />
     </div>
   );
 }
